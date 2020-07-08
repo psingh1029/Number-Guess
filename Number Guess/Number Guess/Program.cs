@@ -23,17 +23,14 @@ namespace Number_Guess
         public static string GetPlayerName(int playerNumber)///creates method that takes in a player number weather it is 1 or 2 
         {
             string playerName="";
-            Console.WriteLine("Player {0} what is your name", playerNumber);///asks users to enter their name 
-            try///Reads the input by the player
-            {
-               playerName = Console.ReadLine();
-              
-            }
-            catch( Exception e)
-            {
-                Console.WriteLine("Looks like something went wrong");
-            }
+            while (playerName == "")
+            { 
+                Console.WriteLine("Player {0} what is your name", playerNumber);///asks users to enter their name 
+                ///Reads the input by the player
+                playerName = Console.ReadLine();
+             }
             return playerName;//returns player name to method call
         }
     }
 }
+
