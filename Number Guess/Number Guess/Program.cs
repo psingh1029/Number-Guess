@@ -14,7 +14,7 @@ namespace Number_Guess
             string player1Name = GetPlayerName(1);
             string player2Name = GetPlayerName(2);
 
-            PlayGame(player1Name, player1Name);
+            PlayGame(player1Name, player2Name);
 
          
            
@@ -47,7 +47,7 @@ namespace Number_Guess
 
             string numberString = "";
             int number = 0;
-            while(numberString == "")
+            while(numberString == ""|| number<1|| number >100)//this makes sure that a user does not enter blank and within range
             {
                 Console.WriteLine("{0} {1}", playerName, message);
                 numberString = Console.ReadLine();
@@ -83,6 +83,18 @@ namespace Number_Guess
                 if(guessedNumber== numberToGuess)
                 {
                     Console.WriteLine("Congratulation, you guessed the correct Number");
+                }
+                else if(currentAttempt>6 && guessedNumber<numberToGuess)
+                {
+                    Console.WriteLine("Oh that number is less then the correct number");
+                    Console.WriteLine("please try again your have used {0} out of 10 attempts", currentAttempt);
+                    currentAttempt++;
+                }
+                else if(currentAttempt>6 && guessedNumber>numberToGuess)
+                {
+                    Console.WriteLine("Oh that number is greater than the correct number");
+                    Console.WriteLine("please try again your have used {0} out of 10 attempts", currentAttempt);
+                    currentAttempt++;
                 }
                 else
                 {
