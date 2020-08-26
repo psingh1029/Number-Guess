@@ -69,9 +69,10 @@ namespace Number_Guess
         {
             string message = "Please choose a number between 1 and 100";
             int numberToGuess = GetNumber(player1Name, message);
-           
+
 
             int currentAttempt = 1;
+                ;
             
 
             Console.WriteLine("{0} please try to guess {1}'s number",player2Name,player1Name);
@@ -79,31 +80,54 @@ namespace Number_Guess
             
             while(currentAttempt<=10)
             {
-                int guessedNumber = int.Parse(Console.ReadLine());
-                if(guessedNumber== numberToGuess)
+                int guessedNumber=0;
+                try
+                {
+                    guessedNumber = int.Parse(Console.ReadLine());
+                }catch(FormatException e)
+                {
+                    Console.WriteLine("this is not a number");
+                    guessedNumber = -1;
+                }
+
+                if(guessedNumber == numberToGuess)
                 {
                     Console.WriteLine("Congratulation, you guessed the correct Number");
                 }
-                else if(currentAttempt>6 && guessedNumber<numberToGuess)
+                else if(currentAttempt>5 && guessedNumber<numberToGuess)
                 {
                     Console.WriteLine("Oh that number is less then the correct number");
                     Console.WriteLine("please try again your have used {0} out of 10 attempts", currentAttempt);
                     currentAttempt++;
                 }
-                else if(currentAttempt>6 && guessedNumber>numberToGuess)
+                else if(currentAttempt>5 && guessedNumber>numberToGuess)
                 {
                     Console.WriteLine("Oh that number is greater than the correct number");
                     Console.WriteLine("please try again your have used {0} out of 10 attempts", currentAttempt);
                     currentAttempt++;
                 }
+                else if(currentAttempt==10)
+                {
+                    Console.WriteLine("Sorry you did not guess the number");
+                    Console.WriteLine("GAME OVER");
+                    break;
+                }
+                else if(guessedNumber==-1)
+                {
+                    Console.WriteLine("Please try again");
+                }
                 else
                 {
-                    Console.WriteLine("please try again your have used {0} out of 10 attempts", currentAttempt);
+                    Console.WriteLine("please try again you have used {0} out of 10 attempts", currentAttempt);
                     currentAttempt++;
                 }
             }
 
+           
+
+
             return 0;
+           
         }
     }
 }
